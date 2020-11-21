@@ -1,5 +1,5 @@
 # Lotus
-![Alt text](/images/logo.jpg)
+![Alt text](/images/lotus.jpg)
 
 ** Version 1.0.0.0 **
 
