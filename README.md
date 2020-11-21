@@ -8,4 +8,4 @@
 - Prayag Piya <prayagpiya12@gmail.com>
 ---
 ## Copyright
-:tm: Prayag Piya, Islington College
+(c) Prayag Piya, Islington College
