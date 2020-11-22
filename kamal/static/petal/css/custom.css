@@ -1,0 +1,31 @@
+body{
+    background-color: rgb(247, 251, 255)
+}
+
+.navigation{
+    list-style: none;
+    height: 98vh;
+    background-color: rgba(255, 255, 0, 0);
+}
+.navigation li{
+    padding: 40px 20px;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(41, 77, 238);
+}
+
+.control-panel{
+    background-color: rgb(0, 255, 76);
+    display: inline;
+}
+
+.navbar-brand{
+    font-size: 35px;
+    font-weight: bold;
+}
+
+i{
+    margin-right: 10px;
+}

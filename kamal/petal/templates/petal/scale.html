@@ -1,0 +1,33 @@
+{% load static %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="shortcut icon" href="{% static 'petal/image/logo1.png' %}" type="image/x-icon" /> -->
+
+    <title>कमल (Lotus)</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'petal/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'petal/css/mdb.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'petal/css/custom.css' %}">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="{% static 'petal/js/jquery.min.js' %}"></script>
+    <script src="{% static 'petal/js/mdb.min.js' %}"></script>
+    <script src="{% static 'petal/js/popper.min.js' %}"></script>
+    <script src="{% static 'petal/js/tooltip.min.js' %}"></script>
+    <script src="{% static 'petal/js/bootstrap.min.js' %}"></script>
+
+    <script src="https://kit.fontawesome.com/c7a404bbce.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="row">
+        {% include 'petal/navigation.html' %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="{% static 'petal/js/script.js' %}"></script>
+</body>
+
+</html>
