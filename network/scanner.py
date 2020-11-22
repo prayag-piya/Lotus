@@ -21,15 +21,24 @@ class Network(object):
 
     def scan(self, timeout=20):
         self.network = []
-        packet = Ether(dst='ff:ff:ff:ff:ff:ff')/ARP(pdst=self.gateway+'/24')/Padding(
-            load='\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00')
+        packet = Ether(dst='ff:ff:ff:ff:ff:ff')/ARP(pdst=self.gateway+'/24')
         ans, unans = srp(packet, verbose=0, timeout=timeout)
-        print(ans)
         for pkt in ans:
             self.network.append({'IP': pkt[1].psrc, 'MAC': pkt[1].hwsrc})
 
         return self.network
 
-
-obj = Network()
-print(obj.scan())
+    def Echo(self, ip, count=4):
+        pings = []
+        for i in range(0, count):
+            t = 0.0
+            t1 = time.time()
+            ans, unans = sr(IP(dst=ip, ttl=64)/ICMP(), verbose=0, timeout=2)
+            t2 = time.time()
+            t += t2-t1
+            if len(ans) != 0:
+                pings.append({'IP': ans[0][1].src, 'TTL': ans[0]
+                              [1].ttl, 'REPLY': str((t/count)*1000)+"ms"})
+            else:
+                pings.append({'IP': 'Not Reachable'})
+        return pings

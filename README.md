@@ -1,4 +1,4 @@
-# Lotus
+# कमल (Lotus)
 ![Alt text](/images/lotus.jpg)
 
 ** Version 1.0.0.0 **
