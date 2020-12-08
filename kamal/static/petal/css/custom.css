@@ -32,4 +32,7 @@ i{
 
 .dashboard{
     background-color: white;
+    margin-top: 4%;
+    height: 96%;
+    border-radius: 20px;
 }
