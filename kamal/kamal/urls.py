@@ -18,5 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('petal.urls'))
+    path('', include('petal.urls')),
+    # api rest frame work
+    path('api/packet/', include('petal.api.urls')),
 ]

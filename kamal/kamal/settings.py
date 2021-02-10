@@ -25,8 +25,7 @@ SECRET_KEY = '1*h*94tv3-nqlaol8**eio^yl9t^afri&4)tb2r7!b%!yv=js1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['192.168.0.103', '127.0.0.1']
 
 # Application definition
 
@@ -37,8 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'petal'
+    'rest_framework',
+    'petal.apps.PetalConfig',
 ]
 
 MIDDLEWARE = [

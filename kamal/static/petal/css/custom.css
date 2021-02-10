@@ -35,4 +35,9 @@ i{
     margin-top: 4%;
     height: 96%;
     border-radius: 20px;
+    overflow: hidden;
+}
+
+.thead-primary{
+    background-color: rgb(110, 134, 241);
 }
