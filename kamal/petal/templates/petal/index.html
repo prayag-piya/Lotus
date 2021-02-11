@@ -2,6 +2,15 @@
 {% block content %}
 <div class="col-lg-9">
     <div class="dashboard">
+        <div class="row">
+            <div class="col-lg-4">
+                <i style="margin-left: 30px; margin-top: 20px; font-weight: bold;">Count </i>
+                <p id='count' style='margin-left:20px; font-size: 120px; font-weight: bolder;'>0</p>
+            </div>
+            <div class="col-lg-8">
+                <canvas id="myChart" width="400" height="150"></canvas>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead class="thead-primary">
                 <tr>
@@ -22,4 +31,68 @@
         </table>
     </div>
 </div>
+
+<script>
+    const str = "{{data}}"
+    const pkt = str.split(',');
+    const data = pkt.slice(0, pkt.length - 1);
+    const str1 = '{{dataset | safe}}'
+    const connection = JSON.parse(str1);
+    const byts = []
+    function sum(input) {
+
+        if (toString.call(input) !== "[object Array]")
+            return false;
+
+        var total = 0;
+        for (var i = 0; i < input.length; i++) {
+            if (isNaN(input[i])) {
+                continue;
+            }
+            total += Number(input[i]);
+        }
+        return total;
+    }
+    for (var key in connection) {
+        var total = sum(connection[key])
+        byts.push(total)
+    }
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data,
+            datasets: [{
+                label: 'Network usage according to dates',
+                data: byts,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
 {% endblock %}

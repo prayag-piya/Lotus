@@ -17,7 +17,7 @@ class packet(models.Model):
         ('dns', 'Domain Name Service'),
         ('uc', 'Uncatogoried'),
     )
-    date = models.DateTimeField()
+    date = models.DateTimeField(unique=True)
     transport = models.CharField(max_length=10)
     protocol = models.CharField(max_length=10, choices=CHOICES)
     conectionbytes = models.IntegerField()
