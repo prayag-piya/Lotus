@@ -2,12 +2,12 @@ from scapy.all import *
 from scapy.config import conf
 import subprocess
 import sqlite3
+import nmap
 conf.ipv6_enabled = False
 
 
 class Network(object):
     def __init__(self):
-        print("Looking for default gateway")
         prc = subprocess.Popen('route get default | grep gateway',
                                stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, shell=True)
         self.gateway = prc.communicate()
@@ -15,9 +15,13 @@ class Network(object):
         if len(self.gateway) != 0:
             self.gateway = self.gateway[4:len(self.gateway)-1].split(':')
             self.gateway = self.gateway[1][1:]
+
         else:
             print("Didn't found a gateway\n")
             self.gateway = input('Enter a gateway : ')
+
+    def __str__(self):
+        return self.gateway
 
     def scan(self, timeout=20):
         self.network = []
@@ -42,3 +46,12 @@ class Network(object):
             else:
                 pings.append({'IP': 'Not Reachable'})
         return pings
+
+
+def servicescan():
+    obj = Network()
+    host = obj.scan()
+    nm = nmap.PortScanner()
+    for i in host:
+        scan_host = nm.scan(i['IP'], arguments='-A -T4')
+        print(scan_host['scan'])
