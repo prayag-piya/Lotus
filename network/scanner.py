@@ -1,3 +1,4 @@
+import requests
 from scapy.all import *
 from scapy.config import conf
 import subprocess
@@ -54,4 +55,23 @@ def servicescan():
     nm = nmap.PortScanner()
     for i in host:
         scan_host = nm.scan(i['IP'], arguments='-A -T4')
-        print(scan_host['scan'])
+        mac = i['MAC'].upper()
+        print(scan_host)
+        try:
+            service = list(scan_host['scan'][i['IP']]['tcp'].keys())
+        except:
+            service = 'No Service'
+        content = {
+            'state': scan_host['scan'][i['IP']]['status']['state'],
+            'os': scan_host['scan'][i['IP']]['vendor'][mac],
+            'ipaddrs': i['IP'],
+            'mac': mac,
+            'service': service}
+        try:
+            req = requests.post(
+                'http://127.0.0.1:8000/api/packet/hostview/', data=content)
+        except Exception as e:
+            print(e)
+
+
+servicescan()

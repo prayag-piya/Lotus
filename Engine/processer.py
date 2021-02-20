@@ -1,8 +1,8 @@
-from parser import totalHits, parsing
 import threading
 import sqlite3
 import requests
 import time
+from parser import totalHits, parsing
 
 
 class kamal(object):
@@ -57,9 +57,6 @@ class kamal(object):
             self.trafficCount(date, trasport, protocol, byts)
 
     def trafficCount(self, timestamp, trasp, port, bytes_bytes):
-        # obj = packet(timestamp=timestamp, transport=trasp,
-        #              portocol=port, connectionbytes=bytes_bytes)
-        # obj.save()
         try:
             content = {'date': timestamp, 'transport': trasp,
                        'protocol': port, 'conectionbytes': bytes_bytes}

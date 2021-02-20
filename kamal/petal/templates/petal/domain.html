@@ -1,0 +1,33 @@
+{% extends 'petal/scale.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-9">
+    <div class="dashboard">
+        <div class="row dns">
+            <div class="col-lg-2 good">
+                <p class="onDns">Total Queries</p>
+                <h1 class="dnscount" id='totaldns'>DNS</h1>
+            </div>
+            <div class="col-lg-2 primary">
+                <p class="onDns">Queries Blocked</p>
+                <h1 class="dnscount" id='dnsblock'>DNS</h1>
+            </div>
+            <div class="col-lg-2 warning">
+                <p class="onDns">Blocked Percetage</p>
+                <h1 class="dnscount" id='blockedper'>DNS</h1>
+            </div>
+            <div class="col-lg-2 danger">
+                <p class="onDns">Doamins on Blacklist</p>
+                <h1 class="dnscount" id='blacklist'>DNS</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <canvas id="myChart" width="400" height="150"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'petal/js/bundle.js' %}"></script>
+
+{% endblock %}

@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.views.generic import *
 from .models import *
 import json
-from network.scanner import *
+from .utlis import *
+import threading
 # Create your views here.
 
 
@@ -13,6 +14,7 @@ class index(View):
     def get(self, request):
         data = ''
         dataset = {}
+        hst = host.objects.all()
         pkt = packet.objects.all()
 
         for i in pkt:
@@ -25,6 +27,14 @@ class index(View):
                 dataset[dateT[0]].append(i.conectionbytes)
 
         self.content['data'] = data
+        self.content['host'] = hst
         self.content['dataset'] = json.dumps(dataset)
-        print(json.dumps(dataset))
+        return render(request, self.template_name, self.content)
+
+
+class dns(View):
+    template_name = 'petal/domain.html'
+    content = {}
+
+    def get(self, request):
         return render(request, self.template_name, self.content)

@@ -1,4 +1,5 @@
 {% extends 'petal/scale.html' %}
+{% load static %}
 {% block content %}
 <div class="col-lg-9">
     <div class="dashboard">
@@ -15,6 +16,7 @@
             <thead class="thead-primary">
                 <tr>
                     <th scope="col">S.N</th>
+                    <th scope="col">IP</th>
                     <th scope="col">MAC</th>
                     <th scope="col">Vendor</th>
                     <th scope='col'>State</th>
@@ -22,13 +24,16 @@
                 </tr>
             </thead>
             <tbody>
+                {% for hst in host %}
                 <tr>
                     <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>up</td>
-                    <td>@mdo</td>
+                    <td>{{ hst.ipaddrs }}</td>
+                    <td>{{ hst.mac }}</td>
+                    <td>{{ hst.os }}</td>
+                    <td>{{ hst.state }}</td>
+                    <td>{{ hst.service }}</td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
@@ -97,4 +102,5 @@
         }
     });
 </script>
+<script src="{% static 'petal/js/script.js' %}"></script>
 {% endblock %}

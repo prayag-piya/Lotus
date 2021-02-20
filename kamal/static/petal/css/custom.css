@@ -41,3 +41,35 @@ i{
 .thead-primary{
     background-color: rgb(110, 134, 241);
 }
+
+.good{
+    margin: 20px;
+    margin-left: 120px;
+    background-color:#CCFFE5;
+}
+.primary{
+    margin: 20px;
+    background-color: rgb(177,201,232);
+}
+.warning{
+    margin: 20px;
+    background-color: rgb(255,203,164);
+}
+
+.danger{
+    margin: 20px;
+    background-color:rgb(255,114,118);
+}
+
+.dns{
+    height: 120px;
+}
+
+.onDns{
+    color: rgb(0, 0, 0);
+}
+
+.dnscount{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: right;
+}
