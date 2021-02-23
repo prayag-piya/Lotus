@@ -35,7 +35,7 @@ i{
     margin-top: 4%;
     height: 96%;
     border-radius: 20px;
-    overflow: hidden;
+    overflow:scroll;
 }
 
 .thead-primary{
@@ -73,3 +73,53 @@ i{
     font-family: Arial, Helvetica, sans-serif;
     text-align: right;
 }
+
+.nav{
+    background-color: rgb(247, 251, 255);
+    height: 50px;
+}
+
+.navLink{
+    margin-top: 10px;
+    margin-left: 20px;
+    font-weight: bolder;
+}
+
+.navLink:hover{
+    border-bottom: 2px solid rgb(41, 77, 238);
+}
+
+.ruleH1{
+    margin: 0px 0px 0px 20px;
+    padding: 0px 0px 0px 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(255, 222, 191);
+    border-bottom: 2px solid rgb(41, 77, 238);
+}
+
+.iprule{
+    margin: 20px 0px 0px 20px;
+}
+
+.input{
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid rgb(240, 202, 121);
+}
+
+.dnslisting{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.whitelist{
+    padding: 10px 20px;
+    border: 1px solid black;
+}
+
+.doaminBlack{
+    margin-top: 20px;
+}
+/* .blacklist{
+    margin-top: 20px;
+} */

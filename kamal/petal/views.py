@@ -38,3 +38,27 @@ class dns(View):
 
     def get(self, request):
         return render(request, self.template_name, self.content)
+
+
+class rules(View):
+    template_name = 'petal/rules.html'
+    content = {}
+
+    def get(self, request):
+        file = open('/Users/prayagpiya/Desktop/Lotus/blacklist.kamal', 'r')
+        filedata = file.read()
+        filedata = filedata.split('\n')
+        self.content['blacklist'] = filedata
+        return render(request, self.template_name, self.content)
+
+    def post(self, request):
+        data = json.loads(request.body)
+        name = data['name']
+        file = open('/Users/prayagpiya/Desktop/Lotus/blacklist.kamal', 'r')
+        filedata = file.read()
+        filedata = filedata.split('\n')
+        filedata.remove(name)
+        f = open('/Users/prayagpiya/Desktop/Lotus/blacklist.kamal', 'w')
+        filep = '\n'.join(filedata)
+        f.write(filep)
+        return render(request, self.template_name, self.content)
