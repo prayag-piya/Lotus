@@ -3,10 +3,12 @@ import sqlite3
 import requests
 import time
 from parser import totalHits, parsing
+from udp import *
 
 
 class kamal(object):
     HITS = 0
+    udp = UDP()
 
     def packets(self):
         while True:
@@ -42,10 +44,11 @@ class kamal(object):
                     byts = process['_source']['network']['bytes']
                 except:
                     byts = 0
+                self.udp.classify(process, protocol)
             elif process['_source']['network']['transport'] == 'icmp':
-                print('icmp')
+                pass
             elif process['_source']['network']['transport'] == 'arp':
-                print('arp')
+                pass
             else:
                 print('We dont have following classfier')
             self.trafficCount(date, trasport, protocol, byts)
@@ -57,13 +60,14 @@ class kamal(object):
             self.trafficCount(date, trasport, protocol, byts)
 
     def trafficCount(self, timestamp, trasp, port, bytes_bytes):
-        try:
-            content = {'date': timestamp, 'transport': trasp,
-                       'protocol': port, 'conectionbytes': bytes_bytes}
-            req = requests.post(
-                'http://127.0.0.1:8000/api/packet/packetview/', data=content)
-        except Exception as e:
-            print(e)
+        pass
+        # try:
+        #     content = {'date': timestamp, 'transport': trasp,
+        #                'protocol': port, 'conectionbytes': bytes_bytes}
+        #     req = requests.post(
+        #         'http://127.0.0.1:8000/api/packet/packetview/', data=content)
+        # except Exception as e:
+        #     print(e)
 
 
 obj = kamal()

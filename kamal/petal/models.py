@@ -26,3 +26,12 @@ class packet(models.Model):
 
     def __str__(self):
         return self.protocol
+
+
+class ddosplan(models.Model):
+    thresshold = models.IntegerField()
+    ipaddrs = models.CharField(max_length=100)
+    service = models.IntegerField()
+
+    def __str__(self):
+        return self.ipaddrs + ' ---- ' + str(self.thresshold)

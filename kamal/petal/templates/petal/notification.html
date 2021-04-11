@@ -1,22 +1,20 @@
 <style>
-    .fa-bell {
-        font-size: 26px;
+    .navbar {
+        box-shadow: none;
+    }
+
+    a {
         color: rgb(41, 77, 238);
     }
 
-    .profile-link {
-        background-color: rgb(41, 77, 238);
-        border-radius: 55%;
-    }
-
-    .profile-text {
-        color: white;
-        font-size: 20px;
+    .title-name {
+        margin-left: 50px;
     }
 </style>
-<div class="col-lg-1">
-    <ul class="navigation">
-        <li class="nav-link"><b class="fa fa-bell" aria-hidden="true"></b></li>
-        <li class="nav-link profile-link"><b class="profile-text">PP</b></li>
-    </ul>
-</div>
+<nav class="navbar navbar-light justify-content-between">
+    <a class="navbar-brand title-name" style="color: rgb(41, 77, 238);" href="/">कमल</a>
+    <form class="form-inline">
+        <i class="fas fa-bell" style="font-size: 30px; color: rgb(41, 77, 238);"></i>
+        <a style="background-color: rgb(41, 77, 238); margin-left: 20px; padding: 20px; border-radius: 50px">PP</a>
+    </form>
+</nav>

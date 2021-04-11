@@ -1,9 +1,8 @@
-import requests
 from scapy.all import *
 from scapy.config import conf
 import subprocess
-import sqlite3
 import nmap
+import asyncio
 conf.ipv6_enabled = False
 
 
@@ -50,6 +49,7 @@ class Network(object):
 
 
 def servicescan():
+    network = []
     obj = Network()
     host = obj.scan()
     nm = nmap.PortScanner()
@@ -59,6 +59,12 @@ def servicescan():
         print(scan_host)
         try:
             service = list(scan_host['scan'][i['IP']]['tcp'].keys())
+            if scan_host['scan'][i['IP']]['vendor'] == {}:
+                os = "Not Found"
+            elif type(scan_host['scan'][i['IP']]['vendor']) == dict:
+                os = scan_host['scan'][i['IP']]['vendor'][mac]
+            else:
+                os = scan_host['scan'][i['IP']]['vendor']
         except:
             service = 'No Service'
         content = {
@@ -67,11 +73,10 @@ def servicescan():
             'ipaddrs': i['IP'],
             'mac': mac,
             'service': service}
-        try:
-            req = requests.post(
-                'http://127.0.0.1:8000/api/packet/hostview/', data=content)
-        except Exception as e:
-            print(e)
+
+        network.append(content)
+    return network
 
 
-servicescan()
+obj = Network()
+print(obj.scan())

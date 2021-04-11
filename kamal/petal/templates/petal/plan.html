@@ -1,0 +1,83 @@
+{% extends 'petal/scale.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-10">
+    <div class="dashboard">
+        <div class="row gaps">
+            <div class="col-lg-12">
+                <form method="POST">
+                    {% csrf_token %}
+                    <select name='ipaddrs' id='ip_addrs'>
+                        <option>--Select Ip Addrs--</option>
+                    </select>
+                    <select name='port' id="port" onfocus="searchservice()">
+                        <option>--Select Service--</option>
+                    </select>
+                    <input id='thress' name='thresshold' type="text" placeholder="Enter your thresshold in GB">
+                    <input class="button" type="submit" value="Start">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    {% if message.tags %}
+    <script>alert("{{ message }}")</script> {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}
+<script>
+    var select_con = document.getElementById('ip_addrs');
+    fetch('http://127.0.0.1:8000/api/packet/hostview/')
+        .then((res) => { return res.json() })
+        .then((data) => {
+            for (i = 0; i <= data.length - 1; i++) {
+                $('<option value=' + data[i]['ipaddrs'] + ' >' + data[i]['ipaddrs'] + '</option>').appendTo(select_con)
+            }
+        })
+    function removeOptions(selectElement) {
+        var i, L = selectElement.options.length - 1;
+        for (i = L; i >= 0; i--) {
+            selectElement.remove(i);
+        }
+    }
+    function searchservice() {
+        var value = document.getElementById('ip_addrs').value;
+        var select_service = document.getElementById('port');
+        if (value == '--Select Ip Addrs--' | undefined) {
+            alert('Please select ip addrs');
+            document.getElementById('ip_addrs').focus();
+        }
+        else {
+            fetch('http://127.0.0.1:8000/api/packet/hostview/')
+                .then((res) => { return res.json() })
+                .then((data) => {
+                    var protocol = []
+                    for (i = 0; i <= data.length - 1; i++) {
+                        if (data[i]['ipaddrs'] == value) {
+                            var port = data[i]['service']
+                            port = JSON.parse(port)
+                            if (typeof (port) == "number") {
+                                protocol.push(port)
+                            }
+                            else {
+                                for (i = 0; i <= port.length - 1; i++) {
+                                    console.log(port[i])
+                                    protocol.push(port[i])
+                                }
+                            }
+
+                        }
+                    }
+                    for (i = 0; i <= protocol.length - 1; i++) {
+                        removeOptions(document.getElementById('port'));
+                        $('<option value=' + protocol[i] + ' >' + protocol[i] + '</option>').appendTo(select_service)
+                    }
+                })
+        }
+    }
+
+</script>
+{% endblock %}

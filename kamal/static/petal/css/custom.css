@@ -4,8 +4,9 @@ body{
 
 .navigation{
     list-style: none;
-    height: 98vh;
+    height: 100vh;
     background-color: rgba(255, 255, 0, 0);
+    position: fixed;
 }
 .navigation li{
     padding: 40px 20px;
@@ -33,9 +34,9 @@ i{
 .dashboard{
     background-color: white;
     margin-top: 4%;
-    height: 96%;
+    height: 100%;
     border-radius: 20px;
-    overflow:scroll;
+    overflow: scroll;
 }
 
 .thead-primary{
@@ -120,6 +121,44 @@ i{
 .doaminBlack{
     margin-top: 20px;
 }
-/* .blacklist{
+
+.blacklist{
+    border: none;
+    border-bottom: 1px solid;
+    width: 300px;
+    padding: 5px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#ip_addrs{
+    border: none;
+    border-bottom: 1px solid red;
+    width: 300px;
+    padding: 10px;
+}
+#port{
+    border: none;
+    border-bottom: 1px solid red;
+    width: 200px;
+    padding: 10px;
+    margin-left: 20px;
+}
+.plan_panel{
     margin-top: 20px;
-} */
+}
+.gaps{
+    margin-left: 20px;
+}
+#thress{
+    border: none;
+    border-bottom: 1px solid red;
+    width: 220px;
+    padding: 10px;
+    margin-left: 20px;
+}
+.button{
+    border: 1px solid red;
+    padding: 10px 30px;
+    background-color: white;
+    margin-left: 20px;
+    margin-top: 5px;
+}

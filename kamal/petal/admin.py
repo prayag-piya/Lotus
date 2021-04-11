@@ -4,3 +4,4 @@ from .models import *
 
 admin.site.register(packet)
 admin.site.register(host)
+admin.site.register(ddosplan)

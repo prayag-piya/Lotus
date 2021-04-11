@@ -1,7 +1,16 @@
 {% extends 'petal/scale.html' %}
 {% load static %}
 {% block content %}
-<div class="col-lg-9">
+{% if messages %}
+{% for message in messages %}
+{% if message.tags %}
+<script>
+    alert('{{ message }}')
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+<div class="col-lg-10">
     <div class="dashboard">
         <div class="row">
             <div class="col-lg-12">
@@ -28,7 +37,7 @@
 
                 <h1 class="ruleH1" id='dns'>DNS</h1>
                 <div class="row">
-                    <div class="col-lg-6 blacklist">
+                    <div class="col-lg-6">
                         <div>
                             <table class="table table-striped dnslisting">
                                 <thead class="thead-primary">
@@ -40,7 +49,7 @@
                                 <tbody>
                                     {% for list in blacklist %}
                                     <tr>
-                                        <th scope="row">{{ list }}</th>
+                                        <td scope="row">{{ list }}</td>
                                         <td><button class='whitelist' data-action="{{ list }}">Whitelist</button></td>
                                     </tr>
                                     {% endfor %}
@@ -48,11 +57,13 @@
                             </table>
                         </div>
                     </div>
-                    <div class="col-lg-6 blacklist">
+                    <div class="col-lg-6">
                         <div class="doaminBlack">
-                            <form method="post">
+                            <form method="POST">
                                 {% csrf_token %}
-                                <input type="text" value="" placeholder="blacklist">
+                                <input type="text" class="blacklist" name="blacklist" placeholder="blacklist"><br>
+                                <input style="padding: 2px 25px; margin-top: 15px;" type="submit" onclick="reload()"
+                                    value="Add">
                             </form>
                         </div>
                     </div>

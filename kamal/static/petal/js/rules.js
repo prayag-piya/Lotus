@@ -35,3 +35,7 @@ for (var i = 0; i < whitelist.length; i++) {
 
     })
 }
+
+function reload() {
+    location.reload()
+}
